@@ -1,4 +1,5 @@
-# GreenPortals
+<img src="src/resources/assets/META-INF/greenportals.png" alt="Logo" title="Logo">
+
 
 This is a Minecraft Forge mod.  
 A mod for create Rick's interdimension green portal, but in minecraft
