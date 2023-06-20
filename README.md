@@ -1,4 +1,4 @@
-<img src="src/main/resources/greenportals.png" alt="Logo" title="Logo">
+<img src="readme-logo.png" alt="Logo" title="Logo">
 
 
 This is a Minecraft Forge mod.  
