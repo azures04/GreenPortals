@@ -1,4 +1,4 @@
-<img src="src/resources/assets/META-INF/greenportals.png" alt="Logo" title="Logo">
+<img src="src/main/resources/assets/META-INF/greenportals.png" alt="Logo" title="Logo">
 
 
 This is a Minecraft Forge mod.  
