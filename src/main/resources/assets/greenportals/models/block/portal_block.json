@@ -1,0 +1,15 @@
+{
+    "textures": {
+        "particle": "greenportals:green_portal_block",
+        "portal": "greenportals:green_portal_block"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 5, 5, 5 ],
+            "faces": {
+                "east": { "uv": [ 0, 0, 5, 5 ], "texture": "#portal" },
+                "west": { "uv": [ 0, 0, 5, 5 ], "texture": "#portal" }
+            }
+        }
+    ]
+}

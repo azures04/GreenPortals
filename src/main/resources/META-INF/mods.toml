@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL=""
+[[mods]]
+modId="greenportals"
+version="${file.jarVersion}"
+displayName="Green Portals"
+displayURL=""
+logoFile="greenportals.png"
+credits=""
+authors="Azures"
+description='''
+Adds an interdimensional teleport command.
+'''
+[[dependencies.greenportals]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.greenportals]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5]"
+    ordering="NONE"
+    side="BOTH"
