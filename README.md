@@ -1,6 +1,5 @@
+# **WORK IN PROGRESS**
 <img src="readme-logo.png" alt="Logo" title="Logo">
-
-
 This is a Minecraft Forge mod.  
 A mod to makes Rick's interdimensional greens portals, but in minecraft
 
