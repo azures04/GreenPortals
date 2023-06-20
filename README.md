@@ -2,7 +2,7 @@
 
 
 This is a Minecraft Forge mod.  
-A mod for create Rick's interdimension green portal, but in minecraft
+A mod to makes Rick's interdimensional greens portals, but in minecraft
 
 ### Minecraft Forge
 
