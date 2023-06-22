@@ -25,3 +25,9 @@ Adds an interdimensional teleport command.
     versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"
+[[dependencies.nomorenbt]]
+    modId="nomorenbt"
+    mandatory=true
+    versionRange="[1.0.0]"
+    ordering="NONE"
+    side="BOTH"
