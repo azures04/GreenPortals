@@ -1,7 +1,6 @@
 package fr.azures.mod.greenportals.registry.blocks;
 
 import fr.azures.mod.greenportals.GreenPortals;
-import fr.azures.mod.greenportals.registry.ModTilesEntities;
 import fr.azures.mod.libs.nomorenbt.common.Data;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,19 +27,9 @@ public class PortalBlock extends Block {
 			mc.player.sendMessage(new StringTextComponent("dimX  > " + blockData.getInt("dimX")), mc.player.getUUID());
 			mc.player.sendMessage(new StringTextComponent("dimY  > " + blockData.getInt("dimY")), mc.player.getUUID());
 			mc.player.sendMessage(new StringTextComponent("dimZ  > " + blockData.getInt("dimZ")), mc.player.getUUID());
-			mc.player.sendMessage(new StringTextComponent("dimId > " + blockData.getInt("dimId")), mc.player.getUUID());
+			mc.player.sendMessage(new StringTextComponent("dimId > " + blockData.getString("dimId")), mc.player.getUUID());
 		}
 		super.stepOn(worldIn, posIn, entityIn);
-	}
-	
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return ModTilesEntities.PORTAL_TILE_ENTITY_TYPE.get().create();
 	}
 
 }
