@@ -4,7 +4,6 @@ import java.util.Set;
 
 import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.registry.ModBlocks;
-import fr.azures.mod.greenportals.registry.tileentity.PortalTile;
 import fr.azures.mod.libs.nomorenbt.common.Data;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
