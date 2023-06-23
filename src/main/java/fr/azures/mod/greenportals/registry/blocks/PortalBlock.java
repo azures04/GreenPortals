@@ -30,6 +30,7 @@ public class PortalBlock extends Block {
 				Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
 		        if (dimension.location().toString().contains(blockData.getString("dimId"))) {
+		        	System.out.println(dimension.location().toString());
 		        	TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX"), blockData.getInt("dimY"), blockData.getInt("dimZ"), entityIn.xRot,  entityIn.yRot);
 		        }
 		    });
