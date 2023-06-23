@@ -23,7 +23,7 @@ public class PortalBlock extends Block {
 	
 	@Override
 	public void stepOn(World worldIn, BlockPos posIn, Entity entityIn) {
-		Data blockData = GreenPortals.getInstance().blocks.getData("minecraft:overworld", posIn);
+		Data blockData = GreenPortals.getInstance().blocks.getData("global", posIn);
 		System.out.println(posIn);
 		if (mc.player != null) {
 			try {
