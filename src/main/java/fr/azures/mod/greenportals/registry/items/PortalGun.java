@@ -41,7 +41,7 @@ public class PortalGun extends Item {
 		        dimensions.forEach(dimension -> {
 		        if ("minecraft:overworld".contains(dimension.location().toString())) {
 		        	try {
-			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setChunkForced(outPortal.getX(), outPortal.getZ(), true);
+			        	//ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setChunkForced(outPortal.getX(), outPortal.getZ(), true);
 			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setBlock(outPortal, ModBlocks.PORTAL_BLOCK.get().defaultBlockState(), 1);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -51,7 +51,7 @@ public class PortalGun extends Item {
 		        	outPortalData.putInt("dimX", outPortal.getX());
 		        	outPortalData.putInt("dimY", outPortal.getY());
 		        	outPortalData.putInt("dimZ", outPortal.getZ());
-		    		GreenPortals.getInstance().blocks.storeData(dimension.location().toString(), inPortal, outPortalData);
+		    		GreenPortals.getInstance().blocks.storeData(dimension.location().toString(), outPortal, outPortalData);
 		        }
 		    });
 		}

@@ -24,10 +24,14 @@ public class PortalBlock extends Block {
 	public void stepOn(World worldIn, BlockPos posIn, Entity entityIn) {
 		Data blockData = GreenPortals.getInstance().blocks.getData(mc.level.dimension().toString(), posIn);
 		if (mc.player != null) {
-			mc.player.sendMessage(new StringTextComponent("dimX  > " + blockData.getInt("dimX")), mc.player.getUUID());
-			mc.player.sendMessage(new StringTextComponent("dimY  > " + blockData.getInt("dimY")), mc.player.getUUID());
-			mc.player.sendMessage(new StringTextComponent("dimZ  > " + blockData.getInt("dimZ")), mc.player.getUUID());
-			mc.player.sendMessage(new StringTextComponent("dimId > " + blockData.getString("dimId")), mc.player.getUUID());
+			try {
+				mc.player.sendMessage(new StringTextComponent("dimX  > " + blockData.getInt("dimX")), mc.player.getUUID());
+				mc.player.sendMessage(new StringTextComponent("dimY  > " + blockData.getInt("dimY")), mc.player.getUUID());
+				mc.player.sendMessage(new StringTextComponent("dimZ  > " + blockData.getInt("dimZ")), mc.player.getUUID());
+				mc.player.sendMessage(new StringTextComponent("dimId > " + blockData.getString("dimId")), mc.player.getUUID());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		super.stepOn(worldIn, posIn, entityIn);
 	}
