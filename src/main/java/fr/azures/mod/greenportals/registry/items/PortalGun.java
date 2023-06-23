@@ -33,11 +33,10 @@ public class PortalGun extends Item {
 			world.setBlock(inPortal, ModBlocks.PORTAL_BLOCK.get().defaultBlockState(), 1);
 			Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
-		        if (dimension.location().toString().contains(dimension.location().toString())) {
+		        if (dimension.location().toString().contains("nether")) {
 		        	try {
-			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setChunkForced(outPortal.getX(), outPortal.getZ(), true);
-			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setBlock(outPortal, Blocks.WATER.defaultBlockState(), 0);
-			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setBlock(outPortal, ModBlocks.PORTAL_BLOCK.get().defaultBlockState(), 0);
+			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setChunkForced(outPortal.getX(), outPortal.getZ(), false);
+			        	ServerLifecycleHooks.getCurrentServer().getLevel(dimension).setBlock(outPortal, ModBlocks.PORTAL_BLOCK.get().defaultBlockState(), 1);
 		        	} catch (Exception e) {
 						e.printStackTrace();
 					}
