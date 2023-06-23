@@ -6,6 +6,9 @@ import fr.azures.mod.greenportals.registry.ModBlocks;
 import fr.azures.mod.greenportals.registry.ModItems;
 import fr.azures.mod.greenportals.registry.ModTilesEntities;
 import fr.azures.mod.greenportals.utils.Constants;
+import fr.azures.mod.libs.nomorenbt.client.LocalStorage;
+import fr.azures.mod.libs.nomorenbt.client.LocalStorage.Blocks;
+import fr.azures.mod.libs.nomorenbt.client.LocalStorage.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ExtensionPoint;
@@ -17,15 +20,31 @@ import net.minecraftforge.fml.network.FMLNetworkConstants;
 @SuppressWarnings("UtilityClassWithPublicConstructor")
 @Mod(Constants.MOD_ID)
 public class GreenPortals {
+	
+	public Minecraft mc = Minecraft.getInstance();
+	public static LocalStorage localStorage;
+	public Blocks blocks;
+	public Items items;
+	private static GreenPortals instance;
+	
 	public GreenPortals() {
+		this.localStorage = new LocalStorage();
+		this.blocks = localStorage.blocks;
+		this.items = localStorage.items;
+		this.instance = this;
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModItems.ITEMS.register(bus);
 		ModBlocks.BLOCKS.register(bus);
 		ModTilesEntities.TILE_ENTITY_TYPE.register(bus);
 		ModLoadingContext.get().registerExtensionPoint(
 			ExtensionPoint.DISPLAYTEST,
-			() -> Pair.of( () -> FMLNetworkConstants.IGNORESERVERONLY, ( remote, isServer ) -> true )
+			() -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (remote, isServer) -> true )
 		);
 		Minecraft.getInstance().allowsMultiplayer();
 	}
+	
+	public static GreenPortals getInstance() {
+		return instance;
+	}
+	
 }
