@@ -6,6 +6,7 @@ import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.utils.TeleporterUtils;
 import fr.azures.mod.libs.nomorenbt.common.Data;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.RegistryKey;
@@ -22,15 +23,14 @@ public class PortalBlock extends Block {
 	}
 	
 	@Override
-	public void stepOn(World worldIn, BlockPos posIn, Entity entityIn) {
+	public void entityInside(BlockState stateIn, World worldIn, BlockPos posIn, Entity entityIn) {
 		Data blockData = GreenPortals.getInstance().blocks.getData("global", posIn);
-		System.out.println(posIn);
-		if (mc.player != null) {
+		if (mc.level != null) {
 			try {
+				System.out.println(blockData.getString("dimId"));
 				Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
 		        if (dimension.location().toString().contains(blockData.getString("dimId"))) {
-		        	System.out.println(dimension.location().toString());
 		        	TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX"), blockData.getInt("dimY"), blockData.getInt("dimZ"), entityIn.xRot,  entityIn.yRot);
 		        }
 		    });
@@ -38,7 +38,6 @@ public class PortalBlock extends Block {
 				e.printStackTrace();
 			}
 		}
-		super.stepOn(worldIn, posIn, entityIn);
 	}
 
 }
