@@ -4,6 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import fr.azures.mod.greenportals.registry.ModBlocks;
 import fr.azures.mod.greenportals.registry.ModItems;
+import fr.azures.mod.greenportals.ui.PortalGunConfigScreenUI;
 import fr.azures.mod.greenportals.utils.Constants;
 import fr.azures.mod.libs.nomorenbt.client.LocalStorage;
 import fr.azures.mod.libs.nomorenbt.client.LocalStorage.Blocks;
@@ -38,7 +39,6 @@ public class GreenPortals {
 			ExtensionPoint.DISPLAYTEST,
 			() -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (remote, isServer) -> true )
 		);
-		Minecraft.getInstance().allowsMultiplayer();
 	}
 	
 	public static GreenPortals getInstance() {

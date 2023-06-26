@@ -23,12 +23,10 @@ public class PortalBlock extends Block {
 	}
 	
 	@Override
-	public void stepOn(World worldIn, BlockPos posIn, Entity entityIn) {
+	public void entityInside(BlockState state, World worldIn, BlockPos posIn, Entity entityIn) {
 		Data blockData = GreenPortals.getInstance().blocks.getData(mc.getLevelSource().getBaseDir().toString(), posIn);
-		System.out.println(posIn);
 		if (mc.player != null) {
 			try {
-				System.out.println(blockData.getString("dimId"));
 				Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
 		        	if (dimension.location().toString().contains(blockData.getString("dimId"))) {

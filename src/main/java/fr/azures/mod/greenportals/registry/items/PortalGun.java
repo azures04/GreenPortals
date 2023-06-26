@@ -31,7 +31,11 @@ public class PortalGun extends Item {
 		if (mc.player.isShiftKeyDown()) {
 			String[] args = null;
 			PortalGunConfigScreenUI window = new PortalGunConfigScreenUI();
-			window.main(args);
+			try {
+				window.main(args);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		} else {
 			BlockPos inPortal = new BlockPos(entity.pick(10.0D, 10.0F, false).getLocation());
 			BlockPos outPortal = new BlockPos(27, 87, -27);
