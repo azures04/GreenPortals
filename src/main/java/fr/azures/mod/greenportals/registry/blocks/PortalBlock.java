@@ -23,17 +23,19 @@ public class PortalBlock extends Block {
 	}
 	
 	@Override
-	public void entityInside(BlockState stateIn, World worldIn, BlockPos posIn, Entity entityIn) {
-		Data blockData = GreenPortals.getInstance().blocks.getData("global", posIn);
-		if (mc.level != null) {
+	public void stepOn(World worldIn, BlockPos posIn, Entity entityIn) {
+		Data blockData = GreenPortals.getInstance().blocks.getData(mc.getLevelSource().getBaseDir().toString(), posIn);
+		System.out.println(posIn);
+		if (mc.player != null) {
 			try {
 				System.out.println(blockData.getString("dimId"));
 				Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
-		        if (dimension.location().toString().contains(blockData.getString("dimId"))) {
-		        	TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX"), blockData.getInt("dimY"), blockData.getInt("dimZ"), entityIn.xRot,  entityIn.yRot);
-		        }
-		    });
+		        	if (dimension.location().toString().contains(blockData.getString("dimId"))) {
+		        		System.out.println(dimension.location().toString());
+		        		TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX"), blockData.getInt("dimY"), blockData.getInt("dimZ"), entityIn.xRot,  entityIn.yRot);
+		        	}
+		        });
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
