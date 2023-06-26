@@ -30,13 +30,7 @@ public class PortalGun extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
 		if (mc.player.isShiftKeyDown()) {
-			String[] args = null;
-			PortalGunConfigScreenUI window = new PortalGunConfigScreenUI();
-			try {
-				window.main(args);
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+			Minecraft.getInstance().setScreen(new PortalGunConfigScreenUI());
 		} else {
 			BlockPos inPortal = new BlockPos(entity.pick(10.0D, 10.0F, false).getLocation());
 			BlockPos outPortal = new BlockPos(Temp.xCoord, Temp.yCoord, Temp.zCoord);
