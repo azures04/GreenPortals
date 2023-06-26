@@ -19,7 +19,7 @@ public class PortalGunConfigScreenUI extends Screen {
     private TextFieldWidget yCoord;
     private TextFieldWidget zCoord;
     int currentDimensionIndex = 0;
-
+    String currentDimensionId = "minecraft:overworld";
     public PortalGunConfigScreenUI() {
         super(new StringTextComponent("Portal Gun Config"));
     }
@@ -41,7 +41,7 @@ public class PortalGunConfigScreenUI extends Screen {
                 currentDimensionIndex = 0;
             }
             RegistryKey<World> dimension = dimensions.get(currentDimensionIndex);
-            System.out.println(dimension.location().toString());
+            currentDimensionId = dimension.location().toString();
             button.setMessage(new StringTextComponent(dimension.location().toString()));
         }));
 
@@ -51,6 +51,11 @@ public class PortalGunConfigScreenUI extends Screen {
             		Temp.xCoord = Integer.valueOf(xCoord.getValue().toString());
             		Temp.yCoord = Integer.valueOf(yCoord.getValue().toString());
             		Temp.zCoord = Integer.valueOf(zCoord.getValue().toString());
+            		Temp.dimCoord = currentDimensionId;
+            		System.out.println(Temp.xCoord);
+            		System.out.println(Temp.yCoord);
+            		System.out.println(Temp.zCoord);
+            		System.out.println(Temp.dimCoord);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
