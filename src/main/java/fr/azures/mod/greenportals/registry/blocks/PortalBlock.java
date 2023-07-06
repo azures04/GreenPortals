@@ -27,7 +27,7 @@ public class PortalBlock extends Block {
 		super(properties.noCollission());
 	}
 	
-	@Override
+	@Override 
 	public void entityInside(BlockState state, World worldIn, BlockPos posIn, Entity entityIn) {
 		Data blockData = GreenPortals.getInstance().blocks.getData(mc.getLevelSource().getBaseDir().toString(), posIn);
 		if (mc.player != null) {
@@ -35,10 +35,11 @@ public class PortalBlock extends Block {
 				Set<RegistryKey<World>> dimensions = ServerLifecycleHooks.getCurrentServer().levelKeys();
 		        dimensions.forEach(dimension -> {
 		        	if (dimension.location().toString().contains(blockData.getString("dimId"))) {
-		        		System.out.println(dimension.location().toString());
+		        		System.out.println(ServerLifecycleHooks.getCurrentServer().getLevel(dimension).dimension().location());
 		        		try {
-			        		TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX"), blockData.getInt("dimY"), blockData.getInt("dimZ"), entityIn.xRot,  entityIn.yRot);
-						} catch (Exception e) {
+			        		TeleporterUtils.teleport(entityIn, ServerLifecycleHooks.getCurrentServer().getLevel(dimension), blockData.getInt("dimX") + 2, blockData.getInt("dimY"), blockData.getInt("dimZ") + 2, entityIn.xRot,  entityIn.yRot);
+			        		System.out.println(mc.player.level.dimension().location().toString());
+		        		} catch (Exception e) {
 							e.printStackTrace();
 						}
 		        	}
