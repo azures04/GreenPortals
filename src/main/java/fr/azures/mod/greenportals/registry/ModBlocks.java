@@ -2,6 +2,7 @@ package fr.azures.mod.greenportals.registry;
 
 import java.util.function.Supplier;
 
+import fr.azures.mod.greenportals.registry.blocks.NeutralizedBlock;
 import fr.azures.mod.greenportals.registry.blocks.PortalBlock;
 import fr.azures.mod.greenportals.utils.Constants;
 import net.minecraft.block.AbstractBlock;
@@ -17,7 +18,8 @@ public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Constants.MOD_ID);
 
-	public static final RegistryObject<Block> PORTAL_BLOCK = createBlock("portal_block", () -> new PortalBlock(AbstractBlock.Properties.of(Material.STONE)));
+	public static final RegistryObject<Block> PORTAL_BLOCK = createBlock("green_portal_block", () -> new PortalBlock(AbstractBlock.Properties.of(Material.STONE)));
+	public static final RegistryObject<Block> NEUTRALIZED_BLOCK = createBlock("neutralized_block", () -> new NeutralizedBlock(AbstractBlock.Properties.of(Material.STONE)));
 
 	public static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier) {
 		RegistryObject<Block> block = BLOCKS.register(name, supplier);

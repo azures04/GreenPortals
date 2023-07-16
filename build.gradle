@@ -37,7 +37,7 @@ version = "${major_version}.${minor_version}.${patch_version}"
 group = "${domain}.${mod_id}"
 archivesBaseName = "${mod_id}"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -85,7 +85,6 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     implementation fg.deobf(files("./libs/nomorenbt-0.0.1.jar"))
-    implementation fg.deobf(files("./libs/Tau-1.2.0.jar"))
 }
 
 jar {

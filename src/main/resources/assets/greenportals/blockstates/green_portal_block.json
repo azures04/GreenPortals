@@ -1,10 +1,10 @@
 {
 	"variants": {
 		"axis=x": {
-			"model": "green_portal:block/green_portal_block"
+			"model": "greenportals:block/green_portal_block"
 		},
 		"axis=z": {
-			"model": "green_portal:block/green_portal_block"
+			"model": "greenportals:block/green_portal_block"
 		}
 	}
 }
