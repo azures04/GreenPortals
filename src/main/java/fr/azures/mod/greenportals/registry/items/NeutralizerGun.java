@@ -1,8 +1,7 @@
 package fr.azures.mod.greenportals.registry.items;
 
 import fr.azures.mod.greenportals.registry.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -18,19 +17,21 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
 
-public class BlockNeutralizerGun extends Item {
+public class NeutralizerGun extends Item {
 
-	public BlockNeutralizerGun(Properties properties) {
+	public NeutralizerGun(Properties properties) {
 		super(properties);
 	}
 	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
-		BlockPos playerPos = entity.blockPosition();
 		BlockRayTraceResult rayTraceResult = rayTraceBlocks(world, entity, RayTraceContext.FluidMode.NONE);
 		if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
 			BlockPos targetPos = rayTraceResult.getBlockPos();
 			world.setBlock(targetPos, ModBlocks.NEUTRALIZED_BLOCK.get().defaultBlockState(), 1);
+		} else if (rayTraceResult.getType() == RayTraceResult.Type.ENTITY) {
+	        Entity targetEntity = rayTraceResult.hitInfo instanceof Entity ? (Entity) rayTraceResult.hitInfo : null;
+	        targetEntity.kill();
 		}
 		return super.use(world, entity, hand);
 	}
