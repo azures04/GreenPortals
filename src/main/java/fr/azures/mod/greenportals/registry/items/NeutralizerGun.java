@@ -30,8 +30,8 @@ public class NeutralizerGun extends Item {
 			BlockPos targetPos = rayTraceResult.getBlockPos();
 			world.setBlock(targetPos, ModBlocks.NEUTRALIZED_BLOCK.get().defaultBlockState(), 1);
 		} else if (rayTraceResult.getType() == RayTraceResult.Type.ENTITY) {
-	        Entity targetEntity = rayTraceResult.hitInfo instanceof Entity ? (Entity) rayTraceResult.hitInfo : null;
-	        targetEntity.kill();
+			System.out.println(rayTraceResult.getType().name());
+			System.out.println(rayTraceResult.getType().ordinal());
 		}
 		return super.use(world, entity, hand);
 	}
