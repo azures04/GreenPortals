@@ -31,10 +31,9 @@ public class SavePointDevice extends Item {
 			playerState.putObject("experience_level", PlayerUtils.getExperienceLevel(entity));
 			playerState.putObject("coordinates", PlayerUtils.getCoordinates(entity));
 			playerState.putObject("abilities", PlayerUtils.getAbilities(entity));
-			GreenPortals.getInstance().items.storeData(Minecraft.getInstance().player.getStringUUID(), this, playerState, false);
+			GreenPortals.getInstance().items.storeData(mc.player.getStringUUID(), this, playerState, false);
 		} else {
-			if (GreenPortals.getInstance().items.getData(arg0, arg1)) {
-				
+			if (GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this)) {
 			}
 		}
 		return super.use(world, entity, hand);
