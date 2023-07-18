@@ -1,8 +1,6 @@
 package fr.azures.mod.greenportals.registry.blocks;
 
-import java.util.Iterator;
 import java.util.Set;
-
 import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.utils.TeleporterUtils;
 import fr.azures.mod.libs.nomorenbt.common.Data;
