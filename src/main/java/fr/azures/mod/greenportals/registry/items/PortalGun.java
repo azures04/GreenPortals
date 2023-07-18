@@ -55,8 +55,8 @@ public class PortalGun extends Item {
 			        	outPortalData.putInt("dimX", inPortal.getX());
 			        	outPortalData.putInt("dimY", inPortal.getY());
 			        	outPortalData.putInt("dimZ", inPortal.getZ());
-			    		GreenPortals.getInstance().blocks.storeData(mc.getLevelSource().getBaseDir().toString(), outPortal, outPortalData);
-			    		GreenPortals.getInstance().blocks.storeData(mc.getLevelSource().getBaseDir().toString(), inPortal, inPortalData);
+			    		GreenPortals.getInstance().blocks.storeData(mc.getLevelSource().getBaseDir().toString(), outPortal, outPortalData, false);
+			    		GreenPortals.getInstance().blocks.storeData(mc.getLevelSource().getBaseDir().toString(), inPortal, inPortalData, false);
 			        }
 			    });
 			}
