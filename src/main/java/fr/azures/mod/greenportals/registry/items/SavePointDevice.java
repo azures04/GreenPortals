@@ -33,7 +33,7 @@ public class SavePointDevice extends Item {
 			playerState.putObject("abilities", PlayerUtils.getAbilities(entity));
 			GreenPortals.getInstance().items.storeData(mc.player.getStringUUID(), this, playerState, false);
 		} else {
-			if (GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this)) {
+			if (GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this) != null) {
 			}
 		}
 		return super.use(world, entity, hand);
