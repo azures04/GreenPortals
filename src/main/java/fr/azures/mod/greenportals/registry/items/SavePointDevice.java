@@ -1,5 +1,7 @@
 package fr.azures.mod.greenportals.registry.items;
 
+import java.util.HashMap;
+
 import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.utils.PlayerUtils;
 import fr.azures.mod.greenportals.utils.TeleporterUtils;
@@ -22,42 +24,68 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class SavePointDevice extends Item {
 
 	private Minecraft mc = Minecraft.getInstance();
-
+	
+	private HashMap<String, Object> currentSave;
+	
 	public SavePointDevice(Properties properties) {
 		super(properties);
+		currentSave = new HashMap<String, Object>();
 	}
 	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
 		if (mc.player.isShiftKeyDown()) {
-			Data playerState = new Data();
-			playerState.putObject("items_inventory", PlayerUtils.getInventories(entity).get(0));
-			playerState.putObject("armor_inventory", PlayerUtils.getInventories(entity).get(1));
-			playerState.putObject("offhand_inventory", PlayerUtils.getInventories(entity).get(2));
-			playerState.putObject("food", PlayerUtils.getFood(entity));
-			playerState.putObject("health", PlayerUtils.getHealth(entity));
-			playerState.putObject("experience_level", PlayerUtils.getExperienceLevel(entity));
-			playerState.putObject("coordinates", PlayerUtils.getCoordinates(entity));
-			playerState.putObject("dimension", mc.player.level.dimension());
-			GreenPortals.getInstance().items.storeData(mc.player.getStringUUID(), this, playerState, false);
+			if (currentSave.size() != 0) {
+				currentSave.clear();
+			}
+			currentSave.put("items_inventory", PlayerUtils.getInventories(entity).get(0));
+			currentSave.put("armor_inventory", PlayerUtils.getInventories(entity).get(1));
+			currentSave.put("offhand_inventory", PlayerUtils.getInventories(entity).get(2));
+			currentSave.put("food", PlayerUtils.getFood(entity));
+			currentSave.put("health", PlayerUtils.getHealth(entity));
+			currentSave.put("experience_level", PlayerUtils.getExperienceLevel(entity));
+			currentSave.put("coordinates", PlayerUtils.getCoordinates(entity));
+			currentSave.put("dimension", mc.player.level.dimension());
+			System.out.println(currentSave.keySet());
+
 		} else {
-			if (GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this) == null) {
+			System.out.println(GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this));
+			if (currentSave.size() == 0) {
 				mc.player.sendMessage(new StringTextComponent("Aucune position n'a été sauvegarder !"), mc.player.getUUID());
 			} else {
-				Data playerState = GreenPortals.getInstance().items.getData(mc.player.getStringUUID(), this);
 				mc.player.inventory.items.clear();
 				mc.player.inventory.armor.clear();
 				mc.player.inventory.offhand.clear();
+				ItemStack[] items = (ItemStack[]) currentSave.get("items_inventory");
+				if (items != null) {
+				    for (int i = 0; i < items.length && i < mc.player.inventory.items.size(); i++) {
+				        mc.player.inventory.items.set(i, items[i]);
+				    }
+				}
+
+				ItemStack[] armor = (ItemStack[]) currentSave.get("items_armor");
+				if (armor != null) {
+				    for (int i = 0; i < armor.length && i < mc.player.inventory.armor.size(); i++) {
+				        mc.player.inventory.armor.set(i, armor[i]);
+				    }
+				}
+
+				ItemStack[] offhand = (ItemStack[]) currentSave.get("items_offhand");
+				if (offhand != null) {
+				    for (int i = 0; i < offhand.length && i < mc.player.inventory.offhand.size(); i++) {
+				        mc.player.inventory.offhand.set(i, offhand[i]);
+				    }
+				}
+
+				mc.player.getFoodData().setFoodLevel((Integer) currentSave.get("food"));
 				
-				mc.player.getFoodData().setFoodLevel((int) playerState.getObject("food"));
+				mc.player.setHealth((float) currentSave.get("health"));
 				
-				mc.player.setHealth((int) playerState.getObject("health"));
-				
-				mc.player.experienceLevel = (int) playerState.getObject("food");
-				mc.player.totalExperience = mc.player.experienceLevel * (int) playerState.getObject("experience_level");
+				mc.player.experienceLevel = (Integer) currentSave.get("food");
+				mc.player.totalExperience = mc.player.experienceLevel * (Integer) currentSave.get("experience_level");
 				mc.player.experienceProgress = 0.0f;
-				BlockPos oldPlayerPos = new BlockPos((BlockPos) playerState.getObject("dimension"));
-				TeleporterUtils.teleport(entity, ServerLifecycleHooks.getCurrentServer().getLevel((RegistryKey<World>) playerState.getObject("dimension")), oldPlayerPos.getX(), oldPlayerPos.getY(), oldPlayerPos.getZ(), mc.player.xRot, mc.player.yRot);
+				BlockPos oldPlayerPos = new BlockPos((BlockPos) currentSave.get("coordinates"));
+				TeleporterUtils.teleport(entity, ServerLifecycleHooks.getCurrentServer().getLevel((RegistryKey<World>) currentSave.get("dimension")), oldPlayerPos.getX(), oldPlayerPos.getY(), oldPlayerPos.getZ(), mc.player.xRot, mc.player.yRot);
 			}
 		}
 		return super.use(world, entity, hand);

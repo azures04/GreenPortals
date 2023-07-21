@@ -21,11 +21,11 @@ public class PlayerUtils {
 		return player.getHealth();
 	}
 	
-	public static float getFood(PlayerEntity player) {
+	public static int getFood(PlayerEntity player) {
 		return player.getFoodData().getFoodLevel();
 	}
 	
-	public static float getExperienceLevel(PlayerEntity player) {
+	public static int getExperienceLevel(PlayerEntity player) {
 		return player.experienceLevel;
 	}
 	
