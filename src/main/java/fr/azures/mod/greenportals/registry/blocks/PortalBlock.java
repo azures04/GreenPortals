@@ -1,6 +1,7 @@
 package fr.azures.mod.greenportals.registry.blocks;
 
 import java.util.Set;
+
 import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.utils.TeleporterUtils;
 import fr.azures.mod.libs.nomorenbt.common.Data;
@@ -32,7 +33,6 @@ public class PortalBlock extends Block {
 	
 	@Override 
 	public void entityInside(BlockState state, World worldIn, BlockPos posIn, Entity entityIn) {
-		System.out.println("a");
 		Data blockData = GreenPortals.getInstance().blocks.getData(mc.getLevelSource().getBaseDir().toString(), posIn);
 		if (mc.player != null) {
 			try {
@@ -69,4 +69,5 @@ public class PortalBlock extends Block {
 		mc.player.chat("D Coord > " + blockData.getString("dimId"));	
     	return super.use(state, world, pos, player, hand, raytrace);
     }
+    
 }

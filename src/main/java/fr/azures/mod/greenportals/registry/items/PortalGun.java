@@ -5,6 +5,7 @@ import java.util.Set;
 import fr.azures.mod.greenportals.GreenPortals;
 import fr.azures.mod.greenportals.registry.ModBlocks;
 import fr.azures.mod.greenportals.ui.PortalGunConfigScreenUI;
+import fr.azures.mod.greenportals.utils.PlayerUtils;
 import fr.azures.mod.greenportals.utils.Temp;
 import fr.azures.mod.libs.nomorenbt.common.Data;
 import net.minecraft.block.Blocks;

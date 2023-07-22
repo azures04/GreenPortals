@@ -2,10 +2,12 @@ package fr.azures.mod.greenportals.utils;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.renderer.FaceDirection;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class PlayerUtils {
 	
