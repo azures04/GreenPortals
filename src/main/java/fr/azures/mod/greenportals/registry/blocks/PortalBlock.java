@@ -28,7 +28,7 @@ public class PortalBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
 	public PortalBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties.noCollission().noOcclusion());
 	}
 	
 	@Override 
