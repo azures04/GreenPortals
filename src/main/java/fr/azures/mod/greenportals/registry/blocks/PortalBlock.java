@@ -7,10 +7,15 @@ import fr.azures.mod.greenportals.utils.TeleporterUtils;
 import fr.azures.mod.libs.nomorenbt.common.Data;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
@@ -26,9 +31,12 @@ public class PortalBlock extends Block {
 
 	private Minecraft mc = Minecraft.getInstance();
     private static final VoxelShape SHAPE = VoxelShapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
 
+    
 	public PortalBlock(Properties properties) {
 		super(properties.noCollission().noOcclusion());
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	
 	@Override 
@@ -67,7 +75,17 @@ public class PortalBlock extends Block {
 		mc.player.chat("Y Coord > " + blockData.getInt("dimY"));
 		mc.player.chat("Z Coord > " + blockData.getInt("dimZ"));
 		mc.player.chat("D Coord > " + blockData.getString("dimId"));	
-    	return super.use(state, world, pos, player, hand, raytrace);
+    	return ActionResultType.SUCCESS;
+    }
+    
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+    }
+    
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
     
 }
