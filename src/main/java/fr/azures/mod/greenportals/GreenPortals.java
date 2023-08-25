@@ -7,7 +7,6 @@ import fr.azures.mod.greenportals.utils.Constants;
 import fr.azures.mod.libs.nomorenbt.client.LocalStorage;
 import fr.azures.mod.libs.nomorenbt.client.LocalStorage.Blocks;
 import fr.azures.mod.libs.nomorenbt.client.LocalStorage.Items;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -19,7 +18,6 @@ import net.minecraftforge.fml.network.FMLNetworkConstants;
 @Mod(Constants.MOD_ID)
 public class GreenPortals {
 	
-	public Minecraft mc = Minecraft.getInstance();
 	public static LocalStorage localStorage;
 	public Blocks blocks;
 	public Items items;

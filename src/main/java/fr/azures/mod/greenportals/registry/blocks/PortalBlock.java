@@ -10,16 +10,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -30,12 +26,12 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class PortalBlock extends Block {
 
 	private Minecraft mc = Minecraft.getInstance();
-    private static final VoxelShape SHAPE = VoxelShapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+	public static final DirectionProperty FACING = HorizontalBlock.FACING;
+	private static final VoxelShape SHAPE = VoxelShapes.box(0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-    
+
 	public PortalBlock(Properties properties) {
-		super(properties.noCollission().noOcclusion());
+		super(properties.noCollission());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	
@@ -62,13 +58,8 @@ public class PortalBlock extends Block {
 			}
 		}
 	}
-	
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
-    }
     
-    @Override
+    /*@Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult raytrace) {
 		Data blockData = GreenPortals.getInstance().blocks.getData(mc.getLevelSource().getBaseDir().toString(), pos);
 		mc.player.chat("X Coord > " + blockData.getInt("dimX"));
@@ -76,7 +67,7 @@ public class PortalBlock extends Block {
 		mc.player.chat("Z Coord > " + blockData.getInt("dimZ"));
 		mc.player.chat("D Coord > " + blockData.getString("dimId"));	
     	return ActionResultType.SUCCESS;
-    }
+    }*/
     
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
@@ -87,5 +78,9 @@ public class PortalBlock extends Block {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
-    
+//    
+//    @Override
+//	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+//    	return SHAPE;
+//	}
 }

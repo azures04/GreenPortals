@@ -1,19 +1,19 @@
 {
 	"variants": {
-        "facing=east": {
-            "model": "greenportals:block/portal_block_east",
-            "y": 90
-        },
-        "facing=north": {
-            "model": "greenportals:block/portal_block_north"
-        },
-        "facing=south": {
-            "model": "greenportals:block/portal_block_south",
-            "y": 180
-        },
-        "facing=west": {
-            "model": "greenportals:block/portal_block_west",
-            "y": 270
-        }
+		"facing=east": {
+		    "model": "greenportals:block/nether_portal_ew",
+		    "y": 90
+		},
+		"facing=north": {
+		    "model": "greenportals:block/nether_portal_ns"
+		},
+		"facing=south": {
+		    "model": "greenportals:block/nether_portal_ew",
+		    "y": 180
+		},
+		"facing=west": {
+		    "model": "greenportals:block/nether_portal_ns",
+		    "y": 270
+		}
 	}
 }
